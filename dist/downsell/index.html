@@ -21,6 +21,8 @@ fbq('track', 'ViewContent', { content_name: 'Downsell - Tarot para Ler para Outr
 <style>
 :root { --paper:#f8f4e9; --ivory:#fffaf0; --ink:#292c20; --olive:#303824; --gold:#87652c; --gold2:#e6c782; --muted:#5c5c4e; --line:#ded5c1; --green:#3c7a3a }
 *,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+.wiapy-box{max-width:520px;margin:18px auto 0;scroll-margin-top:30px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 'DM Sans',system-ui,sans-serif}
 img{display:block;width:100%;height:auto}
 p{margin:0 0 1em}
@@ -72,6 +74,7 @@ em{color:var(--gold);font-style:italic}
 .faq p{margin:.6em 0 0;color:var(--muted)}
 footer{text-align:center;font-size:.78rem;color:var(--muted);padding:30px 0 40px}
 </style>
+<script src="https://wiapy.com/sell/1.0.0/sell.min.js"></script>
 </head>
 <body>
 <div class="bar" style="background:#87652c"><b>Espere! Seu pedido continua confirmado.</b>Antes de acessar seu kit, veja esta última condição.</div>
@@ -86,8 +89,8 @@ footer{text-align:center;font-size:.78rem;color:var(--muted);padding:30px 0 40px
       <p class="tag" style="color:var(--gold2)">O mesmo guia completo · 24 páginas</p>
       <div class="price">R$ 27,00</div>
       <small>pagamento único · em vez de R$ 47,00 da página anterior</small>
-      <a class="btn buy" href="#CHECKOUT_DOWNSELL">SIM, QUERO POR R$ 27,00<small>Acesso imediato junto com o seu kit</small></a>
-      <a class="no" href="../obrigado/">Não, obrigada. Quero só o kit que comprei.</a>
+      <p style="color:#d8d3c2;margin:14px 0 0;font-size:.92rem">Com 1 clique, sem digitar o cartão de novo.</p>
+      <div id="comprar" class="wiapy-box" style="background:#fffaf0;border-radius:14px;padding:12px"><div id="wiapy_upsell"></div></div>
     </div>
   </section>
   <section class="card" style="margin-top:20px">
@@ -107,13 +110,22 @@ footer{text-align:center;font-size:.78rem;color:var(--muted);padding:30px 0 40px
       <div class="s">7<br><small style="font-size:.55rem;font-family:'DM Sans'">DIAS</small></div>
       <div><b>Garantia de 7 dias</b><p style="margin:.3em 0 0;color:var(--muted)">Se o guia não for o que você esperava, peça o reembolso em até 7 dias. Sem perguntas.</p></div>
     </div>
-    <a class="btn buy" href="#CHECKOUT_DOWNSELL">SIM, QUERO O GUIA POR R$ 27,00<small>Última oportunidade com este valor</small></a>
+    <a class="btn" href="#comprar">SIM, QUERO O GUIA POR R$ 27,00<small>Última oportunidade com este valor</small></a>
     <a class="no dark" href="../obrigado/">Não, obrigada. Vou continuar só com o kit.</a>
   </section>
 </main>
 <footer>Tarot na Prática · Helena Valmont</footer>
 <script>
-document.querySelectorAll('.buy').forEach(function(el){ el.addEventListener('click',function(){ if(window.fbq) fbq('track','InitiateCheckout',{content_name:'Downsell - Tarot para Ler para Outras Pessoas',value:27.00,currency:'BRL'}); }); });
+try { initWiapyUpsell({
+    linkUrl: "https://pay.wiapy.com/checkout/6aff894e9c3ae5da616fbaff",
+    linkText: "SIM, QUERO POR R$ 27,00",
+    styles: { backgroundColor: "#4a9b46", hoverBackgroundColor: "#3d8539", fontSize: "17px", borderRadius: "14px" },
+    refusalLinkUrl: "https://tarot-na-pratica.vercel.app/obrigado/",
+    refusalLinkText: "Não, obrigada. Quero só o kit que comprei.",
+    refusalLinkColor: "#5c5c4e"
+}); } catch(err) { document.getElementById('wiapy_upsell').innerHTML='<a class="btn" href="https://pay.wiapy.com/checkout/6aff894e9c3ae5da616fbaff">SIM, QUERO POR R$ 27,00</a><a class="no dark" href="../obrigado/">Não, obrigada. Quero só o kit que comprei.</a>'; }
+var wb=document.getElementById('wiapy_upsell'); var sent=false;
+wb.addEventListener('click',function(e){ var a=e.target.closest('a,button'); if(!a||sent) return; if(/obrigado/.test(a.href||'')) return; sent=true; if(window.fbq) fbq('track','InitiateCheckout',{content_name:'Downsell - Tarot para Ler para Outras Pessoas',value:27.00,currency:'BRL'}); });
 </script>
 </body>
 </html>
