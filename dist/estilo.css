@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
 
 :root {
   --paper: #f8f4e9;
@@ -92,7 +92,7 @@ details p { margin: .6rem auto 0; max-width: 58ch; }
   }
 
   .hero > div { animation: rise-in .48s ease-out both; }
-  .hero-art { animation: rise-in .6s .1s ease-out both; }
+
   .hero > .button { animation: rise-in .45s .22s ease-out both; }
   .button { transition: background-color .2s ease, box-shadow .2s ease; }
   .button:hover { box-shadow: 0 6px 18px #22251535; }
