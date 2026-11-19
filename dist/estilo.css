@@ -63,6 +63,7 @@ em { color: var(--gold); font-weight: inherit; }
 .offer-bonuses ul { margin: 0; padding: 0; list-style: none; font-size: .9rem; }
 .offer-bonuses li { padding: 6px 0; }
 .offer-bonuses li + li { border-top: 1px solid var(--line); }
+.offer-bonuses .offer-bonus-label { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
 .offer-bonuses li::before { content: '✓'; margin-right: .55em; color: #52633d; font-weight: 700; }
 .price { font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1; font-weight: 700; letter-spacing: -.05em; margin: 16px 0 7px; }
 .micro, .availability { font-size: .81rem; color: #e0dac9; margin: .6rem 0 0; }
