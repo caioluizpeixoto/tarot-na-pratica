@@ -8,6 +8,7 @@ if (checkoutUrl) {
 }
 
 button.addEventListener("click", () => {
+  if (window.fbq) fbq("track", "InitiateCheckout", { content_name: "Tarot na Prática", value: 27.90, currency: "BRL" });
   if (checkoutUrl) {
     window.location.assign(checkoutUrl);
     return;
