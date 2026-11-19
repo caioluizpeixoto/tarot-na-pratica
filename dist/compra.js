@@ -1,20 +1,8 @@
-// Add the approved HTTPS checkout URL before opening sales.
-const checkoutUrl = "";
+// Checkout: link direto (o script do FluxoTracker adiciona as UTMs no href).
 const button = document.querySelector("#buy");
-const status = document.querySelector("#status");
-
-if (checkoutUrl) {
-  status.hidden = true;
-}
 
 button.addEventListener("click", () => {
   if (window.fbq) fbq("track", "InitiateCheckout", { content_name: "Tarot na Prática", value: 27.90, currency: "BRL" });
-  if (checkoutUrl) {
-    window.location.assign(checkoutUrl);
-    return;
-  }
-
-  status.textContent = "O checkout ainda não está disponível para pedidos.";
 });
 
 
